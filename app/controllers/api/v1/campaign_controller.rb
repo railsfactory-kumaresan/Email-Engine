@@ -9,9 +9,6 @@ class Api::V1::CampaignController < Api::ApiController
   end
   
   private 
-  def check_user
-    @user = User.where(id:params[:user_id]).first
-  end
   
   def get_camapign
     @campaign = Campaign.where(id:params[:campaign_id]).first

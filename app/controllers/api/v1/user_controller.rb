@@ -29,11 +29,4 @@ class Api::V1::UserController < Api::ApiController
   def corporate_user_confirmation
     render:json => User.corporate_user_confirmation(@user,params[:admin_email],params[:password])
   end 
-  
-
-  private 
-
-  def check_user
-    @user = User.where(id:params[:user_id]).first
-  end
 end  
