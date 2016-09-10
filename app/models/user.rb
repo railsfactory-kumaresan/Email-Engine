@@ -126,7 +126,6 @@ class User < ActiveRecord::Base
 
 
   def self.corporate_user_confirmation(user,admin_email,password)
-    p "here MANDRILL_API_KEY",MANDRILL_API_KEY
     begin
       mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
       template_name = "Inquirly-custom-template"
@@ -171,7 +170,7 @@ class User < ActiveRecord::Base
         message ={
           "subject" => "Customer Information Upload Process Completed",
           "from_name" => "admin",
-          "to" =>[{"email" =>"inquirly.aman@gmail.com"}],
+          "to" =>[{"email" =>user.email}],
           "from_email"=> "admin@inquirly.com",
           "attachments"=>[{"type"=>"text/csv","content"=>attach_file_encoded,
               "name"=>"customer_infos.csv"}],

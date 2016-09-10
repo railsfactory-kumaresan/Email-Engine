@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   def self.campaign_unsuccessful(user,type,campaign)
     
     begin
-      mandrill = Mandrill::API.new "NhjfykhTtFOrXETluJAW6A"
+      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
       template_name = "Inquirly-custom-template"
       template_content = [{
           "name" => "header",
@@ -29,9 +29,6 @@ class Campaign < ActiveRecord::Base
   end
   
   def self.campaign_unsuccessful_message(user,type,campaign)
-    p "user details",user
-    p "user type",type
-    p "user campaign",campaign
     %Q{
       <p>#{user.email },have reached the maximum limit of #{type} quota.</p>
       <p> Camaign Name: #{campaign.label} <p>
